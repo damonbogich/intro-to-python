@@ -30,3 +30,38 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+
+
+#set args to variables 
+#if args are == '' then they default to current month/year
+n = len(sys.argv)
+print(n)
+#Takes care of no input:
+if n == 1:
+  year = 2020
+  month = 7
+#if user enters 1 arg assume its month
+if n == 2:
+  year = 2020
+  if not sys.argv[1].isdigit():
+    print('You must enter a number between 1 and 12 for first argument')
+    exit()
+  else:
+    month = int(sys.argv[1])
+#if user enters 2 args month and year
+if n == 3:
+  #handles if user inputs command line arguments that aren't digits
+  if not sys.argv[1].isdigit() or not sys.argv[2].isdigit():
+    print('You must enter a number between 1 and 12 for first argument and a year for the second value')
+    exit()
+  else:
+    month = int(sys.argv[1])
+    year = int(sys.argv[2])
+
+c = calendar.TextCalendar(calendar.SUNDAY)
+#defaults to current month
+dd = c.formatmonth(year, month)
+print(dd)
+
+#create a calendar for user 
